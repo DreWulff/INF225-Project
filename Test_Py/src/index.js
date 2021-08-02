@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 //Configuración
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
 
 //Middlewares
 app.use(express.urlencoded({extended: false}));
