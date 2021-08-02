@@ -26,10 +26,10 @@ router.get('/habilitacion/:rut', (req, res) =>{
     });
 });
 
-router.get('/habilitacion/:tipo?param', (req, res) =>{
+router.get('/habilitacion/:tipo/:param', (req, res) =>{
     const { tipo } = req.params;
     console.log(tipo);
-    mysqlConnection.query('SELECT * FROM Habilitacion WHERE tipo_maquina = ?', [parseInt(tipo)], (err,rows,fields)=>{
+    mysqlConnection.query('SELECT * FROM Habilitacion WHERE tipo_maquina = ?', [tipo], (err,rows,fields)=>{
         if(!err){
             res.json(rows);
         }else{

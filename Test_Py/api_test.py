@@ -25,7 +25,7 @@ print(json.loads(response.text))
 #print("6. buscarHabilitacion(56565656-9)")
 #print(json.loads(response.text))
 
-response = requests.get("http://3.235.42.11:3000/habilitacion/2?1")
+response = requests.get("http://3.235.42.11:3000/habilitacion/2/1")
 print("7. listarHabilitacionPorTipoMaquina")
 print(json.loads(response.text))
 #
