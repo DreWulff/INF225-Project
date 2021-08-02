@@ -4,7 +4,7 @@ const router = express.Router();
 const mysqlConnection = require('../database');
 
 // listar máquinas
-router.get('/maquina', (req, res) =>{
+router.get('/', (req, res) =>{
     console.log("Entered!");
     mysqlConnection.query('SELECT * FROM Maquina', (err,rows,fields)=>{
         if(!err){
@@ -16,8 +16,8 @@ router.get('/maquina', (req, res) =>{
 });
 
 //Agregar maquina
-router.post('/maquina', (req,res) => {
-    //const { nombre, ubicacion, tipo_maquina }=req.body;
+router.post('/', (req,res) => {
+    const { nombre, ubicacion, tipo_maquina }=req.body;
     mysqlConnection.query('INSERT INTO Maquina set ?', [req.body], (err,rows)=>{
         if(!err){
             res.json(rows);
@@ -28,9 +28,9 @@ router.post('/maquina', (req,res) => {
 });
 
 //eliminar maquina {id}
-router.delete('/maquina/:id',(req,res)=>{
+router.delete('/:id',(req,res)=>{
     const { id } = req.params;
-    mysqlConnection.query('DELETE FROM database WHERE ID = ?', {id}, (err,rows,fields)=>{
+    mysqlConnection.query('DELETE FROM Maquina WHERE id = ?', {id}, (err,rows,fields)=>{
         if(!err){
             res.json(rows);
         }

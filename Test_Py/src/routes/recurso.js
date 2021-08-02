@@ -4,7 +4,7 @@ const router = express.Router();
 const mysqlConnection = require('../database');
 
 //Lista recursos
-router.get('/recurso', (req,res) =>{
+router.get('/', (req,res) =>{
     const { id } = req.params;
     mysqlConnection.query('SELECT * FROM Recurso',  (err,rows,fields) => {
         if(!err){
@@ -17,7 +17,7 @@ router.get('/recurso', (req,res) =>{
 });
 
 //Eliminar recurso id
-router.delete('/recurso/:id',(req,res)=>{
+router.delete('/:id',(req,res)=>{
     const { id } = req.params;
     mysqlConnection.query('DELETE FROM Recurso WHERE ID = ?', [id], (err,rows,fields)=>{
         if(!err){
@@ -25,6 +25,18 @@ router.delete('/recurso/:id',(req,res)=>{
         }
         else{
            console.log(err);
+        }
+    });
+});
+
+//Actualizar recurso
+router.put('/:id',(req,res) =>{
+    const {id} = req.params;
+    mysqlConnection.query('UPDATE Recurso SET ? WHERE id = ?', [req.body,id], (err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
         }
     });
 });

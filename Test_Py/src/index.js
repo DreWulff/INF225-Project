@@ -9,9 +9,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 //Rutas
-app.use(require('./routes/maquina'));
-app.use(require('./routes/recurso'));
-app.use(require('./routes/habilitacion'));
+app.use('/api/maquina', require('./routes/maquina'));
+app.use('/api/recurso', require('./routes/recurso'));
+app.use('/api/habilitacion', require('./routes/habilitacion'));
 
 //Iniciar servidor
 app.listen(app.get('port'), () => {
