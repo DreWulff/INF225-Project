@@ -5,6 +5,7 @@ const mysqlConnection = require('../database');
 
 // listar máquinas
 router.get('/maquina', (req, res) =>{
+    console.log("Entered!");
     mysqlConnection.query('SELECT * FROM Maquina', (err,rows,fields)=>{
         if(!err){
             res.json(rows);

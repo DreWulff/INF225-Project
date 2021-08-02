@@ -1,6 +1,6 @@
 import requests
 
-response = requests.get("http://3.235.42.11/maquina")
+response = requests.get("http://3.235.42.11/")
 print("1. listarMaquinas")
 print(response)
 
