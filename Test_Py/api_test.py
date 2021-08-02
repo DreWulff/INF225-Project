@@ -1,81 +1,82 @@
+import json
 import requests
 
-response = requests.get("http://3.235.42.11/maquina")
+response = requests.get("http://3.235.42.11:3000/maquina")
 print("1. listarMaquinas")
-print(response)
+print(json.loads(response.text))
 
-response = requests.get("http://api.open-notify.org/astros.json")
+response = requests.get("http://3.235.42.11:3000/recurso")
 print("2. listarRecursos")
-print(response)
+print(json.loads(response.text))
 
-response = requests.get("http://api.open-notify.org/astros.json")
+response = requests.get("http://3.235.42.11:3000/habilitacion")
 print("3. listarHabilitacion")
-print(response)
+print(json.loads(response.text))
 
-response = requests.get("http://api.open-notify.org/astros.json")
-print("4. buscarHabilitacion()")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("5. buscarHabilitacion()")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("6. buscarHabilitacion()")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
-
-response = requests.get("http://api.open-notify.org/astros.json")
-print("")
-print(response)
+response = requests.get("http://3.235.42.11:3000/maquina/123456789-0")
+print("4. buscarHabilitacion(123456789-0)")
+print(json.loads(response.text))
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
+#
+#response = requests.get("http://3.235.42.11:3000/maquina")
+#print("1. listarMaquinas")
+#print(response.text)
