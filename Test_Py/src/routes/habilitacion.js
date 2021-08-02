@@ -14,7 +14,19 @@ router.get('/habilitacion', (req, res) =>{
     });
 });
 
-router.get('/habilitacion/:tipo&&param', (req, res) =>{
+router.get('/habilitacion/:rut:', (req, res) =>{
+    const { rut } = req.params;
+    console.log(rut);
+    mysqlConnection.query('SELECT * FROM Habilitacion WHERE rut_maker = ?', [rut], (err,rows,fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+});
+
+router.get('/habilitacion/?tipo&&param', (req, res) =>{
     const { tipo } = req.params;
     console.log(tipo);
     mysqlConnection.query('SELECT * FROM Habilitacion WHERE tipo_maquina = ?', [tipo], (err,rows,fields)=>{
@@ -25,6 +37,5 @@ router.get('/habilitacion/:tipo&&param', (req, res) =>{
         }
     });
 });
-
 
 module.exports = router;
