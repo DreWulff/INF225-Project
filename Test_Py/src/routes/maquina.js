@@ -29,7 +29,7 @@ router.post('/maquina', (req,res) => {
 //eliminar maquina {id}
 router.delete('/maquina/:id',(req,res)=>{
     const { id } = req.params;
-    mysqlConnection.query('DELETE FROM Maquina WHERE id = ?', {id}, (err,rows,fields)=>{
+    mysqlConnection.query('DELETE FROM Maquina WHERE id = ?', [id], (err,rows,fields)=>{
         if(!err){
             res.json(rows);
         }
