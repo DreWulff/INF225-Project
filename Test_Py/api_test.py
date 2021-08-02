@@ -1,6 +1,6 @@
 import requests
 
-response = requests.get("'http://127.0.0.1:3000/'")
+response = requests.get("http://3.235.42.11/maquina")
 print("1. listarMaquinas")
 print(response)
 
