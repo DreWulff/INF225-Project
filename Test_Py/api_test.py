@@ -13,7 +13,7 @@ response = requests.get("http://3.235.42.11:3000/habilitacion")
 print("3. listarHabilitacion")
 print(json.loads(response.text))
 
-response = requests.get("http://3.235.42.11:3000/maquina/123456789-0")
+response = requests.get("http://3.235.42.11:3000/habilitacion/'123456789-0'")
 print("4. buscarHabilitacion(123456789-0)")
 print(json.loads(response.text))
 #

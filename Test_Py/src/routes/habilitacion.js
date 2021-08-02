@@ -16,7 +16,7 @@ router.get('/habilitacion', (req, res) =>{
 
 router.get('/habilitacion/:rut', (req, res) =>{
     const { rut } = req.params;
-    mysqlConnection.query('SELECT * FROM Habilitacion WHERE rut_maker = ?', [id], (err,rows,fields)=>{
+    mysqlConnection.query('SELECT * FROM Habilitacion WHERE rut_maker = ?', [rut], (err,rows,fields)=>{
         if(!err){
             res.json(rows);
         }else{
