@@ -31,18 +31,18 @@ print("\n6. buscarHabilitacion(56565656-9)")
 json_value = response.json()
 print(json_value)
 
-response = requests.get("http://3.235.42.11:3000/habilitacion/2/1")
+response = requests.get("http://3.235.42.11:3000/habilitacion/3/1")
 print("\n7. listarHabilitacionPorTipoMaquina(3)")
 json_value = response.json()
 print(json_value)
 
-response = requests.get("http://3.235.42.11:3000/habilitacion/2/1")
+response = requests.get("http://3.235.42.11:3000/habilitacion/4/1")
 print("\n8. listarHabilitacionPorTipoMaquina(4)")
 json_value = response.json()
 print(json_value)
 
-response = requests.get("http://3.235.42.11:3000/habilitacion/2/1")
-print("\n9. listarHabilitacionPorTipoMaquina(5)")
+response = requests.get("http://3.235.42.11:3000/habilitacion/1/1")
+print("\n9. listarHabilitacionPorTipoMaquina(1)")
 json_value = response.json()
 print(json_value)
 
