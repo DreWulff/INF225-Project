@@ -14,6 +14,22 @@ router.get('/maquina', (req, res) =>{
     });
 });
 
+//Buscar máquina
+router.get('/maquina/:id', (req, res) =>{
+    const { id } = req.params;
+    mysqlConnection.query('SELECT * FROM Maquina WHERE id = ?', [id], (err,rows)=>{
+        if(!err){
+            if (rows.length==1){
+                res.sendStatus(200);
+            }else{
+                res.sendStatus(404);
+            }
+        }else{
+            console.log(err);
+        }
+    });
+});
+
 //Agregar maquina
 router.post('/maquina', (req,res) => {
     const { nombre, ubicacion, tipo_maquina }=req.body;
