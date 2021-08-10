@@ -10,6 +10,7 @@ app.use(express.json());
 
 //Rutas
 app.use(require('./routes/maquina'));
+app.use(require('./routes/tipo_maquina'));
 app.use(require('./routes/recurso'));
 app.use(require('./routes/habilitacion'));
 
