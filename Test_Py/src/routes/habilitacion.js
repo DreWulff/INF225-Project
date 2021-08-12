@@ -5,7 +5,7 @@ const router = express.Router();
 
 const mysqlConnection = require('../database');
 
-function confirMaker(rut_maker) {
+async function confirMaker(rut_maker) {
     let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut='+rut_maker)
         .then(response => {
             let status = response.status;
@@ -23,7 +23,7 @@ function confirMaker(rut_maker) {
 
 };
 
-function confirAssist(rut_assist) {
+async function confirAssist(rut_assist) {
     let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut='+rut_assist)
         .then(response => {
             let status = response.status;
