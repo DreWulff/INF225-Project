@@ -98,8 +98,8 @@ router.post('/habilitacion', (req,res) => {
     //    res.json(!confirMaker*'Rut invalido.' + !confirAssist*'Rut ayudante invalido.');
     //}
 
-    await confirMaker(rut_maker).then((maker_status) => {
-        await confirAssist(rut_ayudante).then((assist_status) => {
+    confirMaker(rut_maker).then((maker_status) => {
+        confirAssist(rut_ayudante).then((assist_status) => {
             console.log(maker_status);
             console.log(assist_status);
             if (assist_status == 200 && maker_status == 200) {
