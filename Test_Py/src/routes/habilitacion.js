@@ -111,7 +111,8 @@ router.post('/habilitacion', (req,res) => {
                     };
                 });
             }else{
-                console.log("Ruts no validos.")
+                const mess = {message:"Ruts no validos."};
+                res.json(JSON.stringify(mess))
             }
         }).catch(e => console.log(e));
     }).catch(e => console.log(e));
