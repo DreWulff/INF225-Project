@@ -5,15 +5,22 @@ const router = express.Router();
 
 const mysqlConnection = require('../database');
 
-async function confirMaker(rut_maker) {
-    let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut=${rut_maker}');
-    let users = await response.json();
-    if (users == 404) {
-        return (false);
-    }
-    else {
-        return (true);
-    }
+async function confirAssist(rut_maker) {
+    let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut='+rut_maker)
+        .then(response => {
+            let status = response.status;
+            console.log(status);
+            if (status != 200) {
+                return (false);
+            }
+            else {
+                return (true);
+            }
+        })
+        .catch(error => {
+            return (false);
+        });
+
 };
 
 async function confirAssist(rut_assist) {
@@ -21,7 +28,7 @@ async function confirAssist(rut_assist) {
         .then(response => {
             let status = response.status;
             console.log(status);
-            if (status == 404) {
+            if (status != 200) {
                 return (false);
             }
             else {
