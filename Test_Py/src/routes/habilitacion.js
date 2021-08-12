@@ -73,7 +73,8 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
 
 router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado }=req.body;
-    if(confirMaker && confirAssist) {
+    console.log(confirAssist(rut_ayudante));
+    if(confirMaker(rut_maker) && confirAssist(rut_ayudante)) {
         mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
             if(!err){
                 res.json(rows);
