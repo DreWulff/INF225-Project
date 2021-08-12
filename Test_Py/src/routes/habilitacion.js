@@ -41,6 +41,7 @@ async function confirAssist(rut_assist) {
 
 };
 
+
 // listar hablilitaciones
 router.get('/habilitacion', (req, res) =>{
     mysqlConnection.query('SELECT * FROM Habilitacion', (err,rows,fields)=>{
@@ -87,7 +88,7 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
 
 router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado }=req.body;
-    if((confirMaker(rut_maker) == 200) && (confirAssist(rut_ayudante) == 200)) {
+    //if((confirMaker(rut_maker) == 200) && (confirAssist(rut_ayudante) == 200)) {
         mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
             if(!err){
                 res.json(rows);
@@ -95,9 +96,26 @@ router.post('/habilitacion', (req,res) => {
                 console.log(err);
             };
         });
-    }else{
-        res.json(!confirMaker*'Rut invalido.' + !confirAssist*'Rut ayudante invalido.');
-    }
+    //}else{
+    //    res.json(!confirMaker*'Rut invalido.' + !confirAssist*'Rut ayudante invalido.');
+    //}
+
+    confirMaker(rut_maker).then((maker_status) => {
+        confirAssist(rut_ayudante).then((assist_status) => {
+            if (assist_status == 200 && maker_status == 200) {
+                mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
+                    if(!err){
+                        res.json(rows);
+                    }else{
+                        console.log(err);
+                    };
+                });
+            }else{
+                res.sendStatus(404);
+            }
+        }).catch(e => console.log(e));
+    }).catch(e => console.log(e));
+    
 });
 
 router.put('/habilitacion/:id',(req,res) =>{
