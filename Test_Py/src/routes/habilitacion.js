@@ -19,6 +19,7 @@ async function confirAssist(rut_assist) {
     let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut=${rut_assist}');
     let users = await response.json();
     let status = await response.status;
+    console.log(rut_assist);
     console.log(status);
     if (status == 404) {
         return (false);
@@ -74,7 +75,6 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
 
 router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado }=req.body;
-    console.log(confirAssist(rut_ayudante));
     if(confirMaker(rut_maker) && confirAssist(rut_ayudante)) {
         mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
             if(!err){
