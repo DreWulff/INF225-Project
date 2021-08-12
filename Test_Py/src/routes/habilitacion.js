@@ -3,6 +3,29 @@ const router = express.Router();
 
 const mysqlConnection = require('../database');
 
+async function confirMaker(rut_maker) {
+    let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut=${rut_maker}');
+    let users = await response.json();
+    if (users == 404) {
+        return (false);
+    }
+    else {
+        return (true);
+    }
+};
+
+async function confirAssist(rut_assist) {
+    let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut=${rut_assist}');
+    let users = await response.json();
+    console.log(users);
+    if (users == 404) {
+        return (false);
+    }
+    else {
+        return (true);
+    }
+};
+
 // listar hablilitaciones
 router.get('/habilitacion', (req, res) =>{
     mysqlConnection.query('SELECT * FROM Habilitacion', (err,rows,fields)=>{
@@ -36,15 +59,30 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
     });
 });
 
+//router.post('/habilitacion', (req,res) => {
+//    const { rut_maker, rut_ayudante, tipo_maquina, habilitado }=req.body;
+//    mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
+//        if(!err){
+//            res.json(rows);
+//        }else{
+//            console.log(err);
+//        };
+//    });
+//});
+
 router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado }=req.body;
-    mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
-        if(!err){
-            res.json(rows);
-        }else{
-            console.log(err);
-        };
-    });
+    if(confirMaker && confirAssist) {
+        mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
+            if(!err){
+                res.json(rows);
+            }else{
+                console.log(err);
+            };
+        });
+    }else{
+        res.json(!confirMaker*'Rut invalido.' + !confirAssist*'Rut ayudante invalido.');
+    }
 });
 
 router.put('/habilitacion/:id',(req,res) =>{
