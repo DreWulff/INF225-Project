@@ -29,14 +29,14 @@ async function confirAssist(rut_assist) {
             let status = response.status;
             console.log(status);
             if (status != 200) {
-                return (false);
+                return (404);
             }
             else {
-                return (true);
+                return (200);
             }
         })
         .catch(error => {
-            return (false);
+            return (404);
         });
 
 };
