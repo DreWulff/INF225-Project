@@ -9,7 +9,6 @@ async function confirMaker(rut_maker) {
     let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut='+rut_maker)
         .then(response => {
             let status = response.status;
-            console.log(status);
             if (status != 200) {
                 return (404);
             }
@@ -27,7 +26,6 @@ async function confirAssist(rut_assist) {
     let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut='+rut_assist)
         .then(response => {
             let status = response.status;
-            console.log(status);
             if (status != 200) {
                 return (404);
             }
@@ -102,6 +100,8 @@ router.post('/habilitacion', (req,res) => {
 
     confirMaker(rut_maker).then((maker_status) => {
         confirAssist(rut_ayudante).then((assist_status) => {
+            console.log(maker_status);
+            console.log(assist_status);
             if (assist_status == 200 && maker_status == 200) {
                 mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
                     if(!err){
