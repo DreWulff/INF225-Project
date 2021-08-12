@@ -17,8 +17,9 @@ async function confirMaker(rut_maker) {
 async function confirAssist(rut_assist) {
     let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut=${rut_assist}');
     let users = await response.json();
-    console.log(users);
-    if (users == 404) {
+    let status = await response.status();
+    console.log(status);
+    if (status == 404) {
         return (false);
     }
     else {
