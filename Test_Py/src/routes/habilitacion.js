@@ -89,13 +89,13 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
 router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado }=req.body;
     //if((confirMaker(rut_maker) == 200) && (confirAssist(rut_ayudante) == 200)) {
-        mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
-            if(!err){
-                res.json(rows);
-            }else{
-                console.log(err);
-            };
-        });
+    //    mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
+    //        if(!err){
+    //            res.json(rows);
+    //        }else{
+    //            console.log(err);
+    //        };
+    //    });
     //}else{
     //    res.json(!confirMaker*'Rut invalido.' + !confirAssist*'Rut ayudante invalido.');
     //}
