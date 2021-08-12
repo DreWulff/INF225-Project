@@ -111,7 +111,7 @@ router.post('/habilitacion', (req,res) => {
                     };
                 });
             }else{
-                res.sendStatus(404);
+                console.log("Ruts no validos.")
             }
         }).catch(e => console.log(e));
     }).catch(e => console.log(e));
