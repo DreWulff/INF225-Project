@@ -2,7 +2,7 @@ import json
 import requests
 
 myobj = {'rut_maker': '11111113',
-         'rut_ayudante': '11111112',
+         'rut_ayudante': '11111010',
          'tipo_maquina': 1,
          'habilitado': False}
 response = requests.post("http://3.235.42.11:3000/habilitacion", data=myobj)

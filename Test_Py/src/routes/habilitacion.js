@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
@@ -16,17 +17,21 @@ async function confirMaker(rut_maker) {
 };
 
 async function confirAssist(rut_assist) {
-    let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut=${rut_assist}');
-    let users = await response.json();
-    let status = await response.status;
-    console.log(rut_assist);
-    console.log(status);
-    if (status == 404) {
-        return (false);
-    }
-    else {
-        return (true);
-    }
+    let response = await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut=${rut_assist}')
+        .then(response => {
+            let status = await response.status;
+            console.log(status);
+            if (status == 404) {
+                return (false);
+            }
+            else {
+                return (true);
+            }
+        })
+        .catch(error => {
+            return (false);
+        });
+
 };
 
 // listar hablilitaciones
