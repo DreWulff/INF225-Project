@@ -88,8 +88,8 @@ router.post('/habilitacion', (req,res) => {
 
     confirMaker(rut_maker).then(maker_s => {
         confirAssist(rut_ayudante).then(assist_s => {
-            console.log(maker_s.maker_status);
-            console.log(assist_s.assist_status);
+            console.log(maker_s);
+            console.log(assist_s);
             if (assist_status == 200 && maker_status == 200) {
                 mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
                     if(!err){
