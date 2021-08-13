@@ -16,6 +16,21 @@ router.get('/recurso', (req,res) =>{
     });
 });
 
+router.get('/recurso/:id', (req, res) =>{
+    const { id } = req.params;
+    mysqlConnection.query('SELECT * FROM Recurso WHERE id = ?', [id], (err,rows)=>{
+        if(!err){
+            if (rows.length==1){
+                res.sendStatus(200);
+            }else{
+                res.sendStatus(404);
+            }
+        }else{
+            console.log(err);
+        }
+    });
+});
+
 //Eliminar recurso id
 router.delete('/recurso/:id',(req,res)=>{
     const { id } = req.params;
