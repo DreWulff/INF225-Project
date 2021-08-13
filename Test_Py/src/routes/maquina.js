@@ -3,6 +3,17 @@ const router = express.Router();
 
 const mysqlConnection = require('../database');
 
+async function confirType(tipo_maquina) {
+    return await fetch('http://3.235.42.11:3000/tipo_maquina/'+tipo_maquina)
+        .then(response => {
+            return response.status;
+        })
+        .catch(error => {
+            return 404;
+        });
+
+};
+
 // listar máquinas
 router.get('/maquina', (req, res) =>{
     mysqlConnection.query('SELECT * FROM Maquina', (err,rows,fields)=>{
