@@ -14,7 +14,7 @@ print("Estado de respuesta: " + str(value) + "\n")
 myobj = {'rut_maker': '11111111',
          'rut_ayudante': '11111112',
          'tipo_maquina': 3,
-         'recurso': 1,
+         'recursos': 1,
          'habilitado': False}
 response = requests.post("http://3.235.42.11:3000/habilitacion", data=myobj)
 print("añadirHabilitacion(11111111, 11111112, 3, 1, False) deberia funcionar.\n")
@@ -31,7 +31,7 @@ print("Estado de respuesta: " + str(value) + "\n")
 myobj = {'rut_maker': '00110011',
          'rut_ayudante': '11111112',
          'tipo_maquina': 3,
-         'recurso': 1,
+         'recursos': 1,
          'habilitado': False}
 response = requests.post("http://3.235.42.11:3000/habilitacion", data=myobj)
 print("añadirHabilitacion(00110011, 11111112, 3, 1, False) no deberia funcionar.\n")
