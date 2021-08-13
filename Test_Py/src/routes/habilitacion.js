@@ -8,10 +8,10 @@ const mysqlConnection = require('../database');
 async function confirMaker(rut_maker) {
     return await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut='+rut_maker)
         .then(response => {
-            return status = {maker_status: response.status};
+            return status;
         })
         .catch(error => {
-            return status = {maker_status: 404};
+            return 404;
         });
 
 };
@@ -19,10 +19,10 @@ async function confirMaker(rut_maker) {
 async function confirAssist(rut_assist) {
     return await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut='+rut_assist)
         .then(response => {
-            return status = {assist_status: response.status};
+            return status;
         })
         .catch(error => {
-            return status = {assist_status: 404};
+            return 404;
         });
 
 };
@@ -86,10 +86,10 @@ router.post('/habilitacion', (req,res) => {
     //    res.json(!confirMaker*'Rut invalido.' + !confirAssist*'Rut ayudante invalido.');
     //}
 
-    confirMaker(rut_maker).then(maker_s => {
-        confirAssist(rut_ayudante).then(assist_s => {
-            console.log(maker_s);
-            console.log(assist_s);
+    confirMaker(rut_maker).then(maker_status => {
+        confirAssist(rut_ayudante).then(assist_status => {
+            console.log(maker_status);
+            console.log(assist_status);
             if (assist_status == 200 && maker_status == 200) {
                 mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
                     if(!err){
