@@ -62,7 +62,7 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
 });
 
 router.post('/habilitacion', (req,res) => {
-    const { rut_maker, rut_ayudante, tipo_maquina, habilitado, recurso }=req.body;
+    const { rut_maker, rut_ayudante, tipo_maquina, habilitado, recursos }=req.body;
     confirMaker(rut_maker).then(maker_status => {
         confirAssist(rut_ayudante).then(assist_status => {
             console.log(maker_status);
