@@ -86,7 +86,7 @@ router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado, recursos }=req.body;
     confirResource(recursos).then(resource_status => {
         confirType(tipo_maquina).then(type_status => {
-            if(type_status == 200 && type_status == 200){
+            if(resource_status == 200 && type_status == 200){
                 confirMaker(rut_maker).then(maker_status => {
                     confirAssist(rut_ayudante).then(assist_status => {
                         if (assist_status == 200 && maker_status == 200) {
@@ -104,7 +104,7 @@ router.post('/habilitacion', (req,res) => {
                     }).catch(e => console.log(e));
                 }).catch(e => console.log(e));
             }else{
-                const mess = {message:"Tipo de maquina no valido."};
+                const mess = {message:"Tipo de maquina o recurso no valido."};
                 res.json(JSON.stringify(mess));
             }
         }).catch(e => console.log(e));
