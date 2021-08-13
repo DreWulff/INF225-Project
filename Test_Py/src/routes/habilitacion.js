@@ -28,7 +28,7 @@ async function confirAssist(rut_assist) {
 };
 
 async function confirType(tipo_maquina) {
-    return await fetch('http://3.235.42.11:3000/tipo_maquina/:'+tipo_maquina)
+    return await fetch('http://3.235.42.11:3000/tipo_maquina/'+tipo_maquina)
         .then(response => {
             return response.status;
         })
