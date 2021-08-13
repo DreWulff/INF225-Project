@@ -33,13 +33,20 @@ router.get('/maquina/:id', (req, res) =>{
 //Agregar maquina
 router.post('/maquina', (req,res) => {
     const { nombre, ubicacion, tipo_maquina }=req.body;
-    mysqlConnection.query('INSERT INTO Maquina set ?', [req.body], (err,rows)=>{
-        if(!err){
-            res.json(rows);
+    confirType(tipo_maquina).then(type_status => {
+        if(type_status == 200){
+            mysqlConnection.query('INSERT INTO Maquina set ?', [req.body], (err,rows)=>{
+                if(!err){
+                    res.json(rows);
+                }else{
+                    console.log(err);
+                };
+            });
         }else{
-            console.log(err);
-        };
-    });
+            const mess = {message:"Tipo de maquina no valido."};
+            res.json(JSON.stringify(mess));
+        }
+    }).catch(e => console.log(e));
 });
 
 //eliminar maquina {id}
