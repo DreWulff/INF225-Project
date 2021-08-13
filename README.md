@@ -11,10 +11,15 @@ Our group has been assigned the Resource portion (orange) of the model:
 
 ## Technology
 * VM: AWS Lightsail
-* API: Node.js (Javascript)
-  * Express (express)
-  * Fetch (node-fetch)
 * Database: MySQL (in Lightsail)
-* Testing program: Python
-  * requests
-  * json
+* Languages:
+  * Javascript (Node.js):
+    * Used to make the API
+    * Libraries:
+      * Express (express)
+      * Fetch (node-fetch)
+  * Python:
+    * Used to make the testing program
+    * Libraries:
+      * Requests (requests)
+      * JSON (json)
