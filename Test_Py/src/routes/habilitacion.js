@@ -27,6 +27,17 @@ async function confirAssist(rut_assist) {
 
 };
 
+async function confirType(tipo_maquina) {
+    return await fetch('http://3.235.42.11:3000/habilitacion/:'+tipo_maquina)
+        .then(response => {
+            return response.status;
+        })
+        .catch(error => {
+            return 404;
+        });
+
+};
+
 
 // listar hablilitaciones
 router.get('/habilitacion', (req, res) =>{
@@ -63,25 +74,31 @@ router.get('/habilitacion/:tipo/:param', (req, res) =>{
 
 router.post('/habilitacion', (req,res) => {
     const { rut_maker, rut_ayudante, tipo_maquina, habilitado, recursos }=req.body;
-    confirMaker(rut_maker).then(maker_status => {
-        confirAssist(rut_ayudante).then(assist_status => {
-            console.log(maker_status);
-            console.log(assist_status);
-            if (assist_status == 200 && maker_status == 200) {
-                mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
-                    if(!err){
-                        res.json(rows);
+    confirType(tipo_maquina).then(type_status => {
+        if(type_status == 200){
+            confirMaker(rut_maker).then(maker_status => {
+                confirAssist(rut_ayudante).then(assist_status => {
+                    console.log(maker_status);
+                    console.log(assist_status);
+                    if (assist_status == 200 && maker_status == 200) {
+                        mysqlConnection.query('INSERT INTO Habilitacion set ?', [req.body], (err,rows)=>{
+                            if(!err){
+                                res.json(rows);
+                            }else{
+                                console.log(err);
+                            };
+                        });
                     }else{
-                        console.log(err);
-                    };
-                });
-            }else{
-                const mess = {message:"Ruts no validos."};
-                res.json(JSON.stringify(mess))
-            }
-        }).catch(e => console.log(e));
+                        const mess = {message:"Ruts no validos."};
+                        res.json(JSON.stringify(mess))
+                    }
+                }).catch(e => console.log(e));
+            }).catch(e => console.log(e));
+        }else{
+            const mess = {message:"Tipo de maquina no valido."};
+            res.json(JSON.stringify(mess));
+        }
     }).catch(e => console.log(e));
-    
 });
 
 router.put('/habilitacion/:id',(req,res) =>{
