@@ -8,7 +8,7 @@ const mysqlConnection = require('../database');
 async function confirMaker(rut_maker) {
     return await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/student/rut?rut='+rut_maker)
         .then(response => {
-            return status;
+            return response.status;
         })
         .catch(error => {
             return 404;
@@ -19,7 +19,7 @@ async function confirMaker(rut_maker) {
 async function confirAssist(rut_assist) {
     return await fetch('http://ec2-3-13-79-51.us-east-2.compute.amazonaws.com:8081/assistant/rut?rut='+rut_assist)
         .then(response => {
-            return status;
+            return response.status;
         })
         .catch(error => {
             return 404;
