@@ -1,4 +1,4 @@
-# [INF225] Project:
+# [INF225] Software Engineering Project:
 ## Resources API
 This is a project made for the class "Software Engineering".
 The objective of the project was to introduce students to the development and implementation of IT systems.
